@@ -1,0 +1,6 @@
+{
+  "name": "Klinik Pergigian Alan Adlan",
+  "description": "Official website for Klinik Pergigian Alan Adlan in Bandar Baru Bangi offering comprehensive dental care, braces, implants, whitening, and appointment booking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
