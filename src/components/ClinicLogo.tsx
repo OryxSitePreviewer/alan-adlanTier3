@@ -61,7 +61,6 @@ export const ClinicLogo: React.FC<ClinicLogoProps> = ({
           <img
             src="/logo.png"
             alt="Klinik Pergigian Alan Adlan Logo"
-            referrerPolicy="no-referrer"
             onError={() => setImgError(true)}
             className={`${imgHeights[size]} w-auto object-contain drop-shadow-sm transition-transform duration-300 hover:scale-105`}
           />

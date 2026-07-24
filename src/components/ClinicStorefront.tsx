@@ -54,16 +54,8 @@ export const ClinicStorefront: React.FC<ClinicStorefrontProps> = ({ lang, compac
           <img
             src="/ClinicAAstorefront.png"
             alt="Klinik Pergigian Alan Adlan Storefront Exterior"
-            referrerPolicy="no-referrer"
             onError={(e) => {
-              const target = e.currentTarget;
-              if (target.src.includes('ClinicAAstorefront')) {
-                target.src = "/clinic.jpg";
-              } else if (target.src.includes('clinic.jpg')) {
-                target.src = "/clinic.png";
-              } else {
-                target.src = "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80";
-              }
+              e.currentTarget.src = "/clinic.png";
             }}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
           />

@@ -83,7 +83,6 @@ export const BeforeAfterGallery: React.FC<BeforeAfterGalleryProps> = ({ lang }) 
                     <img
                       src={item.imageCombined}
                       alt={title}
-                      referrerPolicy="no-referrer"
                       onError={(e) => {
                         e.currentTarget.src = isDamon ? "/bracers.png" : "/whitening.png";
                       }}

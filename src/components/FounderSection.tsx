@@ -67,7 +67,6 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
                 <img
                   src="/founder.jpg"
                   alt={CLINIC_INFO.doctorName}
-                  referrerPolicy="no-referrer"
                   onError={(e) => {
                     // Fallback to high-quality dental surgeon portrait if local /founder.jpg isn't placed yet
                     e.currentTarget.src = "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80";
@@ -218,7 +217,6 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
                 <img
                   src="/dr-rusman.jpg"
                   alt="Dr. Mohd Rusman Adlan"
-                  referrerPolicy="no-referrer"
                   onError={(e) => { e.currentTarget.src = "/founder.jpg"; }}
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                 />
@@ -243,7 +241,6 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
                 <img
                   src="/dr-khairuldin.jpg"
                   alt="Dr. Khairuldin Majid"
-                  referrerPolicy="no-referrer"
                   onError={(e) => { e.currentTarget.src = "/aakhairuldinmajid.jfif"; }}
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                 />
@@ -268,7 +265,6 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
                 <img
                   src="/dr-syafizah.jpg"
                   alt="Dr. Aasyafizah"
-                  referrerPolicy="no-referrer"
                   onError={(e) => { e.currentTarget.src = "/aasyafizah.jfif"; }}
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                 />
@@ -293,7 +289,6 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
                 <img
                   src="/dr-haidar.jpg"
                   alt="Dr. Haidar"
-                  referrerPolicy="no-referrer"
                   onError={(e) => { e.currentTarget.src = "/aa-drhaidar.jpg"; }}
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
                 />
