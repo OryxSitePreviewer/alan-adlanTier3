@@ -85,7 +85,7 @@ export const BeforeAfterGallery: React.FC<BeforeAfterGalleryProps> = ({ lang }) 
                       alt={title}
                       referrerPolicy="no-referrer"
                       onError={(e) => {
-                        e.currentTarget.src = isDamon ? "/BRACERS.png" : "/WHITENING.png";
+                        e.currentTarget.src = isDamon ? "/bracers.png" : "/whitening.png";
                       }}
                       className="w-full h-auto max-h-[380px] object-contain mx-auto rounded-xl group-hover:scale-[1.02] transition-transform duration-500"
                     />

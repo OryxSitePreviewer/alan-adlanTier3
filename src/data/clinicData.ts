@@ -444,7 +444,7 @@ export const BEFORE_AFTER_GALLERY = [
     durationEN: "12-14 Months",
     imageBefore: "/bracers-before.png",
     imageAfter: "/bracers-after.png",
-    imageCombined: "/BRACERS.png",
+    imageCombined: "/bracers.png",
     descBM: "Kemajuan ketara kes gigi bertindih teruk di rahang bawah (lower arch crowding) diselesaikan dengan Braces Self-Ligating Damon tanpa perlu cabutan gigi yang berlebihan.",
     descEN: "Dramatic alignment of lower arch dental crowding achieved using Damon Self-Ligating Braces with light continuous force and sliding mechanism.",
     highlightsBM: [
@@ -468,7 +468,7 @@ export const BEFORE_AFTER_GALLERY = [
     durationEN: "1 Session (60 Mins)",
     imageBefore: "/whitening-before.png",
     imageAfter: "/whitening-after.png",
-    imageCombined: "/WHITENING.png",
+    imageCombined: "/whitening.png",
     descBM: "Perubahan gred warna gigi daripada agak kekuningan kepada warna putih cerah berseri secara selamat dan berkesan.",
     descEN: "Dramatic shade improvement from discolored enamel to a radiant, bright white smile in just one clinical session.",
     highlightsBM: [
