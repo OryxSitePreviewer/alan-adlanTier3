@@ -57,7 +57,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ lang, onOpenBo
   }, [activeCategory, searchTerm, lang]);
 
   return (
-    <section id="services" className="py-20 bg-white text-slate-800 relative border-b border-slate-200">
+    <section id="services" className="py-20 bg-transparent text-slate-800 relative border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

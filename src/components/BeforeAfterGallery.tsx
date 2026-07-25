@@ -11,7 +11,7 @@ export const BeforeAfterGallery: React.FC<BeforeAfterGalleryProps> = ({ lang }) 
   const [selectedImage, setSelectedImage] = useState<{ src: string; title: string } | null>(null);
 
   return (
-    <section className="py-20 bg-white text-slate-800 border-b border-slate-200">
+    <section className="py-20 bg-transparent text-slate-800 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}

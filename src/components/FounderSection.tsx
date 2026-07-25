@@ -10,7 +10,7 @@ interface FounderSectionProps {
 
 export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
   return (
-    <section className="py-16 bg-gradient-to-b from-white via-[#FAF8F5] to-white border-b border-slate-200 overflow-hidden relative">
+    <section className="py-16 bg-transparent border-b border-slate-200 overflow-hidden relative">
       {/* Decorative Gold Accent Background Circle */}
       <div className="absolute top-1/2 -right-36 w-96 h-96 rounded-full bg-amber-400/10 blur-3xl pointer-events-none" />
       <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-yellow-500/10 blur-3xl pointer-events-none" />

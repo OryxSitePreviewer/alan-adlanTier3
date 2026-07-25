@@ -17,7 +17,7 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenBooking }) => {
   )}`;
 
   return (
-    <section id="home" className="relative bg-[#FAF8F5] text-slate-800 min-h-[85vh] flex items-center overflow-hidden border-b border-slate-200">
+    <section id="home" className="relative bg-transparent text-slate-800 min-h-[85vh] flex items-center overflow-hidden border-b border-slate-200">
       {/* Background Image with Light Soft Overlay */}
       <div className="absolute inset-0 z-0">
         <img

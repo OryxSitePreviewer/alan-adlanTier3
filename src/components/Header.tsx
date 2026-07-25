@@ -42,7 +42,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onOpenBooking }) 
   return (
     <header className="sticky top-0 z-50 w-full transition-all duration-300">
       {/* TOP ANNOUNCEMENT & CONTACT BAR */}
-      <div className="bg-[#FAF8F5] text-slate-700 text-xs py-2 px-4 border-b border-slate-200">
+      <div className="bg-[#FAF8F5]/80 backdrop-blur-md text-slate-700 text-xs py-2 px-4 border-b border-slate-200">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
           
           <div className="flex items-center flex-wrap justify-center md:justify-start gap-4 font-medium">

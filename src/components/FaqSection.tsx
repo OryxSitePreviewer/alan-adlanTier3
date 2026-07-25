@@ -20,7 +20,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ lang }) => {
   }, [activeCategory]);
 
   return (
-    <section id="faq" className="py-20 bg-white text-slate-800 relative border-b border-slate-200">
+    <section id="faq" className="py-20 bg-transparent text-slate-800 relative border-b border-slate-200">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
