@@ -19,7 +19,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, setLang, onOpenBooking }) 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     // Check clinic open hours (9:00 to 21:00)
     const now = new Date();

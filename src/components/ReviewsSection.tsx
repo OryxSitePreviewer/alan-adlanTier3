@@ -7,21 +7,23 @@ interface ReviewsSectionProps {
   lang: Language;
 }
 
+const REVIEW_CATEGORIES = [
+  { id: 'all', labelBM: 'Semua Ulasan', labelEN: 'All Reviews' },
+  { id: 'braces', labelBM: 'Braces', labelEN: 'Braces' },
+  { id: 'surgery', labelBM: 'Pembedahan & Cabut', labelEN: 'Surgery & Wisdom' },
+  { id: 'scaling', labelBM: 'Cuci Gigi (Scaling)', labelEN: 'Scaling & Cleaning' },
+  { id: 'implant', labelBM: 'Implan Gigi', labelEN: 'Dental Implants' },
+  { id: 'general', labelBM: 'Rawatan Am & Salur Akar', labelEN: 'General Care' },
+];
+
 export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ lang }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
-  const categories = [
-    { id: 'all', labelBM: 'Semua Ulasan', labelEN: 'All Reviews' },
-    { id: 'braces', labelBM: 'Braces', labelEN: 'Braces' },
-    { id: 'surgery', labelBM: 'Pembedahan & Cabut', labelEN: 'Surgery & Wisdom' },
-    { id: 'scaling', labelBM: 'Cuci Gigi (Scaling)', labelEN: 'Scaling & Cleaning' },
-    { id: 'implant', labelBM: 'Implan Gigi', labelEN: 'Dental Implants' },
-    { id: 'general', labelBM: 'Rawatan Am & Salur Akar', labelEN: 'General Care' },
-  ];
-
-  const filteredReviews = selectedCategory === 'all'
-    ? REVIEWS_DATA
-    : REVIEWS_DATA.filter(r => r.category === selectedCategory || (selectedCategory === 'general' && (!r.category || r.category === 'general')));
+  const filteredReviews = React.useMemo(() => {
+    return selectedCategory === 'all'
+      ? REVIEWS_DATA
+      : REVIEWS_DATA.filter(r => r.category === selectedCategory || (selectedCategory === 'general' && (!r.category || r.category === 'general')));
+  }, [selectedCategory]);
 
   return (
     <section id="reviews" className="py-20 bg-transparent text-slate-800 relative border-b border-slate-200">
@@ -86,7 +88,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ lang }) => {
             <Filter className="w-3.5 h-3.5" />
             <span>{lang === 'bm' ? 'Tapis Rawatan:' : 'Filter Treatment:'}</span>
           </div>
-          {categories.map(cat => {
+          {REVIEW_CATEGORIES.map(cat => {
             const isActive = selectedCategory === cat.id;
             const label = lang === 'bm' ? cat.labelBM : cat.labelEN;
             return (

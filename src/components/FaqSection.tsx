@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Language } from '../types';
 import { FAQS_DATA, CLINIC_INFO } from '../data/clinicData';
 import { ChevronDown, HelpCircle, MessageCircle } from 'lucide-react';
@@ -15,7 +15,9 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ lang }) => {
     setOpenFaqId(openFaqId === id ? null : id);
   };
 
-  const filteredFaqs = FAQS_DATA.filter(faq => activeCategory === 'all' || faq.category === activeCategory);
+  const filteredFaqs = useMemo(() => {
+    return FAQS_DATA.filter(faq => activeCategory === 'all' || faq.category === activeCategory);
+  }, [activeCategory]);
 
   return (
     <section id="faq" className="py-20 bg-white text-slate-800 relative border-b border-slate-200">
