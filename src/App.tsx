@@ -50,7 +50,7 @@ export default function App() {
         style={{
           backgroundImage: `url(${import.meta.env.BASE_URL}alanadlanborderlogo.png)`,
           backgroundSize: 'min(90vmin, 720px)',
-          opacity: 0.18,
+          opacity: 0.14,
         }}
       />
 
