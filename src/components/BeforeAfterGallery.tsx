@@ -80,16 +80,37 @@ export const BeforeAfterGallery: React.FC<BeforeAfterGalleryProps> = ({ lang }) 
                     onClick={() => setSelectedImage({ src: item.imageCombined, title })}
                     className="relative rounded-2xl overflow-hidden border-2 border-amber-500/40 group bg-slate-950 p-1 mb-4 shadow-md cursor-pointer transition hover:border-amber-400"
                   >
-                    <img
-                      src={item.imageCombined}
-                      alt={title}
-                      loading="lazy"
-                      decoding="async"
-                      onError={(e) => {
-                        e.currentTarget.src = isDamon ? "bracers.png" : "whitening.png";
-                      }}
-                      className="w-full h-auto max-h-[380px] object-contain mx-auto rounded-xl group-hover:scale-[1.02] transition-transform duration-500"
-                    />
+                    {isDamon ? (
+                      <img
+                        src={item.imageCombined}
+                        alt={title}
+                        loading="lazy"
+                        decoding="async"
+                        onError={(e) => {
+                          e.currentTarget.src = "bracers.png";
+                        }}
+                        className="w-full h-auto max-h-[380px] object-contain mx-auto rounded-xl group-hover:scale-[1.02] transition-transform duration-500"
+                      />
+                    ) : (
+                      /* Whitening: the combined photo is stacked top (before) / bottom
+                         (after). Show it as two side-by-side halves — before | after —
+                         so it matches the Damon card. Each cell is a centre crop of its
+                         half (200% zoom, positioned to the top or bottom band). */
+                      <div className="grid grid-cols-2 gap-1 rounded-xl overflow-hidden group-hover:scale-[1.02] transition-transform duration-500">
+                        <div
+                          role="img"
+                          aria-label={`${beforeLabel} — ${title}`}
+                          className="aspect-square bg-no-repeat"
+                          style={{ backgroundImage: `url(${item.imageCombined})`, backgroundSize: '200% 200%', backgroundPosition: '50% 0%' }}
+                        />
+                        <div
+                          role="img"
+                          aria-label={`${afterLabel} — ${title}`}
+                          className="aspect-square bg-no-repeat"
+                          style={{ backgroundImage: `url(${item.imageCombined})`, backgroundSize: '200% 200%', backgroundPosition: '50% 100%' }}
+                        />
+                      </div>
+                    )}
 
                     {/* Overlay Badges */}
                     <div className="absolute top-3 left-3 bg-slate-900/90 text-amber-300 text-[11px] font-extrabold uppercase px-3 py-1 rounded-lg border border-amber-500/40 shadow-md backdrop-blur-xs flex items-center gap-1.5">
