@@ -59,7 +59,7 @@ export const ClinicLogo: React.FC<ClinicLogoProps> = ({
         /* Official PNG Logo Asset */
         <div className="flex items-center">
           <img
-            src="/logo.png"
+            src="logo.png"
             alt="Klinik Pergigian Alan Adlan Logo"
             onError={() => setImgError(true)}
             className={`${imgHeights[size]} w-auto object-contain drop-shadow-sm transition-transform duration-300 hover:scale-105`}

@@ -65,7 +65,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
             <div className="my-auto py-6 relative z-10 flex flex-col items-center">
               <div className="relative w-48 h-60 sm:w-56 sm:h-72 rounded-2xl overflow-hidden border-4 border-amber-400/60 shadow-2xl bg-gradient-to-b from-slate-200 to-slate-400 group">
                 <img
-                  src="/founder.jpg"
+                  src="founder.jpg"
                   alt={CLINIC_INFO.doctorName}
                   onError={(e) => {
                     // Fallback to high-quality dental surgeon portrait if local /founder.jpg isn't placed yet
@@ -215,9 +215,9 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
             <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition flex flex-col items-center text-center group">
               <div className="w-36 h-48 rounded-xl overflow-hidden border-2 border-amber-400/60 shadow-sm bg-slate-100 mb-4 relative">
                 <img
-                  src="/dr-rusman.jpg"
+                  src="dr-rusman.jpg"
                   alt="Dr. Mohd Rusman Adlan"
-                  onError={(e) => { e.currentTarget.src = "/founder.jpg"; }}
+                  onError={(e) => { e.currentTarget.src = "founder.jpg"; }}
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                 />
                 <span className="absolute bottom-2 left-2 right-2 bg-slate-900/80 backdrop-blur-xs text-[10px] text-amber-300 font-bold py-0.5 rounded">
@@ -239,9 +239,9 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
             <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition flex flex-col items-center text-center group">
               <div className="w-36 h-48 rounded-xl overflow-hidden border-2 border-amber-400/60 shadow-sm bg-slate-100 mb-4 relative">
                 <img
-                  src="/dr-khairuldin.jpg"
+                  src="dr-khairuldin.jpg"
                   alt="Dr. Khairuldin Majid"
-                  onError={(e) => { e.currentTarget.src = "/aakhairuldinmajid.jfif"; }}
+                  onError={(e) => { e.currentTarget.src = "aakhairuldinmajid.jfif"; }}
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                 />
                 <span className="absolute bottom-2 left-2 right-2 bg-slate-900/80 backdrop-blur-xs text-[10px] text-amber-300 font-bold py-0.5 rounded">
@@ -263,9 +263,9 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
             <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition flex flex-col items-center text-center group">
               <div className="w-36 h-48 rounded-xl overflow-hidden border-2 border-amber-400/60 shadow-sm bg-slate-100 mb-4 relative">
                 <img
-                  src="/dr-syafizah.jpg"
+                  src="dr-syafizah.jpg"
                   alt="Dr. Aasyafizah"
-                  onError={(e) => { e.currentTarget.src = "/aasyafizah.jfif"; }}
+                  onError={(e) => { e.currentTarget.src = "aasyafizah.jfif"; }}
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                 />
                 <span className="absolute bottom-2 left-2 right-2 bg-slate-900/80 backdrop-blur-xs text-[10px] text-amber-300 font-bold py-0.5 rounded">
@@ -287,9 +287,9 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
             <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition flex flex-col items-center text-center group">
               <div className="w-36 h-48 rounded-xl overflow-hidden border-2 border-amber-400/60 shadow-sm bg-slate-100 mb-4 relative">
                 <img
-                  src="/dr-haidar.jpg"
+                  src="dr-haidar.jpg"
                   alt="Dr. Haidar"
-                  onError={(e) => { e.currentTarget.src = "/aa-drhaidar.jpg"; }}
+                  onError={(e) => { e.currentTarget.src = "aa-drhaidar.jpg"; }}
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
                 />
                 <span className="absolute bottom-2 left-2 right-2 bg-slate-900/80 backdrop-blur-xs text-[10px] text-amber-300 font-bold py-0.5 rounded">

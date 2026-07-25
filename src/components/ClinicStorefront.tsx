@@ -52,10 +52,10 @@ export const ClinicStorefront: React.FC<ClinicStorefrontProps> = ({ lang, compac
       <div className="relative bg-slate-100 border-y border-slate-200">
         <div className="relative h-64 sm:h-80 overflow-hidden group">
           <img
-            src="/ClinicAAstorefront.png"
+            src="ClinicAAstorefront.png"
             alt="Klinik Pergigian Alan Adlan Storefront Exterior"
             onError={(e) => {
-              e.currentTarget.src = "/clinic.png";
+              e.currentTarget.src = "clinic.png";
             }}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
           />
