@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Language } from '../types';
 import { CLINIC_INFO, getClinicOpenStatus } from '../data/clinicData';
 import { MessageCircle, X, Calendar, MapPin, DollarSign, Clock } from 'lucide-react';
 
 interface FloatingWhatsAppProps {
-  lang: Language;
   onOpenBooking: () => void;
 }
 
-export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ lang, onOpenBooking }) => {
+export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenBooking }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [clinicStatus, setClinicStatus] = useState(() => getClinicOpenStatus());
 
@@ -23,9 +21,7 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ lang, onOpen
   }, []);
 
   const mainWhatsappUrl = `https://wa.me/${CLINIC_INFO.whatsappNumberDigits}?text=${encodeURIComponent(
-    lang === 'bm'
-      ? "Salam Klinik Pergigian Alan Adlan, saya hendak bertanyakan tentang rawatan pergigian."
-      : "Hi Klinik Pergigian Alan Adlan, I would like to ask about dental treatments."
+    "Hi Klinik Pergigian Alan Adlan, I would like to ask about dental treatments."
   )}`;
 
   const playPopSound = () => {
@@ -97,7 +93,7 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ lang, onOpen
                 </div>
                 <div>
                   <h4 className="font-bold text-xs text-slate-900 leading-tight">
-                    {lang === 'bm' ? 'Bantuan Pantas WhatsApp' : 'WhatsApp Quick Support'}
+                    WhatsApp Quick Support
                   </h4>
                   <div className="flex items-center gap-1 mt-0.5">
                     <span
@@ -112,9 +108,7 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ lang, onOpen
                           clinicStatus.isOpen ? 'bg-emerald-500 animate-ping' : 'bg-rose-500'
                         }`}
                       />
-                      {clinicStatus.isOpen
-                        ? (lang === 'bm' ? 'BUKA SEKARANG' : 'OPEN NOW')
-                        : (lang === 'bm' ? 'TUTUP SEKARANG' : 'CLOSED NOW')}
+                      {clinicStatus.isOpen ? 'OPEN NOW' : 'CLOSED NOW'}
                     </span>
                   </div>
                 </div>
@@ -133,10 +127,8 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ lang, onOpen
               <Clock className="w-3.5 h-3.5 text-[#B8860B] shrink-0" />
               <span className="truncate">
                 {clinicStatus.isOpen
-                  ? (lang === 'bm' ? clinicStatus.hoursTextBM : clinicStatus.hoursTextEN)
-                  : (lang === 'bm'
-                      ? `Buka semula: ${clinicStatus.nextOpeningBM}`
-                      : `Opens next: ${clinicStatus.nextOpeningEN}`)}
+                  ? clinicStatus.hoursTextEN
+                  : `Opens next: ${clinicStatus.nextOpeningEN}`}
               </span>
             </div>
           </div>
@@ -150,17 +142,17 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ lang, onOpen
               className="w-full text-left p-2.5 rounded-xl bg-[#FAF8F5] hover:bg-slate-100 font-semibold text-slate-800 border border-slate-200 flex items-center gap-2.5 transition"
             >
               <Calendar className="w-4 h-4 text-[#B8860B]" />
-              <span>{lang === 'bm' ? 'Borang Tempahan Online' : 'Online Booking Form'}</span>
+              <span>Online Booking Form</span>
             </button>
 
             <a
-              href={`https://wa.me/${CLINIC_INFO.whatsappNumberDigits}?text=${encodeURIComponent('Hi, saya ingin bertanya tentang Pakej Braces.')}`}
+              href={`https://wa.me/${CLINIC_INFO.whatsappNumberDigits}?text=${encodeURIComponent('Hi, I would like to inquire about the Braces Package.')}`}
               target="_blank"
               rel="noreferrer"
               className="w-full text-left p-2.5 rounded-xl bg-[#FAF8F5] hover:bg-slate-100 font-semibold text-slate-800 border border-slate-200 flex items-center gap-2.5 transition"
             >
               <DollarSign className="w-4 h-4 text-[#B8860B]" />
-              <span>{lang === 'bm' ? 'Pertanyaan Pakej Braces' : 'Inquire Braces Package'}</span>
+              <span>Inquire Braces Package</span>
             </a>
 
             <a
@@ -170,7 +162,7 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ lang, onOpen
               className="w-full text-left p-2.5 rounded-xl bg-[#FAF8F5] hover:bg-slate-100 font-semibold text-slate-800 border border-slate-200 flex items-center gap-2.5 transition"
             >
               <MapPin className="w-4 h-4 text-[#B8860B]" />
-              <span>{lang === 'bm' ? 'Lokasi & Navigation' : 'Location & Navigation'}</span>
+              <span>Location & Navigation</span>
             </a>
           </div>
 
@@ -181,7 +173,7 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ lang, onOpen
             className="w-full gold-bg-gradient text-slate-950 font-bold py-2.5 rounded-xl shadow-xs hover:opacity-95 transition text-center text-xs flex items-center justify-center gap-1.5 mt-1"
           >
             <MessageCircle className="w-4 h-4 fill-slate-950 text-slate-950" />
-            <span>{lang === 'bm' ? 'Mula Sembang WhatsApp' : 'Start WhatsApp Chat'}</span>
+            <span>Start WhatsApp Chat</span>
           </a>
         </div>
       )}

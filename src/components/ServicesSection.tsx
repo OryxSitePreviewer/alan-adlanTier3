@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import { Language, ServiceItem } from '../types';
 import { SERVICES_DATA, CLINIC_INFO } from '../data/clinicData';
 import {
   Smile,
@@ -16,11 +15,10 @@ import {
 } from 'lucide-react';
 
 interface ServicesSectionProps {
-  lang: Language;
   onOpenBookingWithTreatment?: (treatmentId: string) => void;
 }
 
-export const ServicesSection: React.FC<ServicesSectionProps> = ({ lang, onOpenBookingWithTreatment }) => {
+export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenBookingWithTreatment }) => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
 
@@ -50,11 +48,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ lang, onOpenBo
       const matchesCategory = activeCategory === 'all' || service.category === activeCategory;
       if (!matchesCategory) return false;
       if (!term) return true;
-      const title = lang === 'bm' ? service.titleBM : service.titleEN;
-      const desc = lang === 'bm' ? service.descriptionBM : service.descriptionEN;
+      const title = service.titleEN;
+      const desc = service.descriptionEN;
       return title.toLowerCase().includes(term) || desc.toLowerCase().includes(term);
     });
-  }, [activeCategory, searchTerm, lang]);
+  }, [activeCategory, searchTerm]);
 
   return (
     <section id="services" className="py-20 bg-transparent text-slate-800 relative border-b border-slate-200">
@@ -63,15 +61,13 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ lang, onOpenBo
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="text-[#B8860B] font-bold uppercase tracking-wider text-xs sm:text-sm block mb-2">
-            {lang === 'bm' ? 'Kepakaran Perkhidmatan Kami' : 'Our Clinical Expertise'}
+            Our Clinical Expertise
           </span>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-slate-900 mb-4">
-            {lang === 'bm' ? 'Penyelesaian Rawatan Pergigian Lengkap' : 'Comprehensive Dental Solutions'}
+            Comprehensive Dental Solutions
           </h2>
           <p className="text-slate-600 font-normal">
-            {lang === 'bm'
-              ? 'Kami menawarkan pelbagai rawatan am dan pakar yang direka untuk melindungi, memulihkan, dan memperindahkan senyuman anda.'
-              : 'We offer specialized and general dental treatments designed to protect, restore, and enhance your oral health.'}
+            We offer specialized and general dental treatments designed to protect, restore, and enhance your oral health.
           </p>
         </div>
 
@@ -84,7 +80,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ lang, onOpenBo
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder={lang === 'bm' ? 'Cari rawatan (contoh: braces, pemutihan, cabut...)' : 'Search treatment (e.g., braces, whitening, scaling...)'}
+              placeholder="Search treatment (e.g., braces, whitening, scaling...)"
               className="w-full pl-12 pr-4 py-3 bg-[#FAF8F5] border border-slate-300 rounded-full text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#B8860B] focus:ring-2 focus:ring-[#B8860B]/20 transition"
             />
           </div>
@@ -99,7 +95,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ lang, onOpenBo
                   : 'bg-[#FAF8F5] text-slate-700 border border-slate-200 hover:bg-slate-100'
               }`}
             >
-              {lang === 'bm' ? 'Semua Rawatan' : 'All Treatments'}
+              All Treatments
             </button>
             <button
               onClick={() => setActiveCategory('ortho')}
@@ -109,7 +105,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ lang, onOpenBo
                   : 'bg-[#FAF8F5] text-slate-700 border border-slate-200 hover:bg-slate-100'
               }`}
             >
-              {lang === 'bm' ? 'Ortodontik (Braces)' : 'Orthodontics'}
+              Orthodontics
             </button>
             <button
               onClick={() => setActiveCategory('aesthetic')}
@@ -119,7 +115,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ lang, onOpenBo
                   : 'bg-[#FAF8F5] text-slate-700 border border-slate-200 hover:bg-slate-100'
               }`}
             >
-              {lang === 'bm' ? 'Estetik & Pemutihan' : 'Aesthetic & Whitening'}
+              Aesthetic & Whitening
             </button>
             <button
               onClick={() => setActiveCategory('restorative')}
@@ -129,7 +125,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ lang, onOpenBo
                   : 'bg-[#FAF8F5] text-slate-700 border border-slate-200 hover:bg-slate-100'
               }`}
             >
-              {lang === 'bm' ? 'Implan & Restorasi' : 'Implants & Restorative'}
+              Implants & Restorative
             </button>
             <button
               onClick={() => setActiveCategory('surgery')}
@@ -139,7 +135,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ lang, onOpenBo
                   : 'bg-[#FAF8F5] text-slate-700 border border-slate-200 hover:bg-slate-100'
               }`}
             >
-              {lang === 'bm' ? 'Pembedahan Mulut' : 'Oral Surgery'}
+              Oral Surgery
             </button>
             <button
               onClick={() => setActiveCategory('general')}
@@ -149,7 +145,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ lang, onOpenBo
                   : 'bg-[#FAF8F5] text-slate-700 border border-slate-200 hover:bg-slate-100'
               }`}
             >
-              {lang === 'bm' ? 'Cuci & Gigi Am' : 'General & Scaling'}
+              General & Scaling
             </button>
           </div>
         </div>
@@ -157,14 +153,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ lang, onOpenBo
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredServices.map(service => {
-            const title = lang === 'bm' ? service.titleBM : service.titleEN;
-            const desc = lang === 'bm' ? service.descriptionBM : service.descriptionEN;
-            const priceTag = lang === 'bm' ? service.estPriceBM : service.estPriceEN;
+            const title = service.titleEN;
+            const desc = service.descriptionEN;
+            const priceTag = service.estPriceEN;
 
             const whatsappEnquiryUrl = `https://wa.me/${CLINIC_INFO.whatsappNumberDigits}?text=${encodeURIComponent(
-              lang === 'bm'
-                ? `Salam Klinik Alan Adlan, saya berminat untuk membuat pertanyaan berkenaan ${service.titleBM}.`
-                : `Hi Klinik Alan Adlan, I would like to inquire about ${service.titleEN}.`
+              `Hi Klinik Alan Adlan, I would like to inquire about ${service.titleEN}.`
             )}`;
 
             return (
@@ -206,7 +200,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ lang, onOpenBo
                     className="text-[#8B6508] font-bold text-xs sm:text-sm inline-flex items-center gap-1.5 hover:text-[#B8860B] transition-colors"
                   >
                     <MessageCircle className="w-4 h-4 fill-current" />
-                    <span>{lang === 'bm' ? 'Tanya via WhatsApp' : 'Inquire via WhatsApp'}</span>
+                    <span>Inquire via WhatsApp</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </a>
 
@@ -215,7 +209,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ lang, onOpenBo
                       onClick={() => onOpenBookingWithTreatment(service.id)}
                       className="text-slate-500 hover:text-slate-900 text-xs underline font-semibold"
                     >
-                      {lang === 'bm' ? 'Slot Tempahan' : 'Book Slot'}
+                      Book Slot
                     </button>
                   )}
                 </div>
@@ -227,7 +221,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ lang, onOpenBo
         {filteredServices.length === 0 && (
           <div className="text-center py-12 bg-[#FAF8F5] rounded-2xl border border-dashed border-slate-300">
             <p className="text-slate-600 font-medium">
-              {lang === 'bm' ? 'Tiada rawatan dijumpai untuk carian anda.' : 'No treatments found matching your search.'}
+              No treatments found matching your search.
             </p>
           </div>
         )}

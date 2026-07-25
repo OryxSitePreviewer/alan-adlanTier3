@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import { Language } from '../types';
 import { BEFORE_AFTER_GALLERY, CLINIC_INFO } from '../data/clinicData';
 import { Sparkles, Clock, MessageCircle, CheckCircle2, ShieldCheck, Maximize2, X } from 'lucide-react';
 
-interface BeforeAfterGalleryProps {
-  lang: Language;
-}
-
-export const BeforeAfterGallery: React.FC<BeforeAfterGalleryProps> = ({ lang }) => {
+export const BeforeAfterGallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<{ src: string; title: string } | null>(null);
 
   return (
@@ -19,36 +14,34 @@ export const BeforeAfterGallery: React.FC<BeforeAfterGalleryProps> = ({ lang }) 
           <div className="inline-flex items-center gap-2 bg-[#B8860B]/10 border border-[#B8860B]/30 px-3.5 py-1 rounded-full mb-3">
             <Sparkles className="w-3.5 h-3.5 text-[#B8860B]" />
             <span className="text-[#8B6508] font-bold text-xs uppercase tracking-wider">
-              {lang === 'bm' ? 'GALERI HASIL RAWATAN' : 'SMILE TRANSFORMATIONS'}
+              SMILE TRANSFORMATIONS
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-slate-900 mb-4">
-            {lang === 'bm' ? 'Hasil Senyuman Pesakit Alan Adlan' : 'Real Patient Transformations'}
+            Real Patient Transformations
           </h2>
           <p className="text-slate-600 font-normal">
-            {lang === 'bm'
-              ? 'Lihat perubahan senyuman indah dan susunan gigi presisi yang dicapai oleh pesakit kami melalui rawatan Braces Self-Ligating Damon dan Pemutihan Gigi Estetik.'
-              : 'Discover the smile changes and precise alignment achieved by our patients using Damon Self-Ligating Braces and Teeth Whitening.'}
+            Discover the smile changes and precise alignment achieved by our patients using Damon Self-Ligating Braces and Teeth Whitening.
           </p>
         </div>
 
         {/* Gallery Grid */}
         <div className="grid md:grid-cols-2 gap-8">
           {BEFORE_AFTER_GALLERY.map(item => {
-            const title = lang === 'bm' ? item.titleBM : item.titleEN;
-            const tag = lang === 'bm' ? item.tagBM : item.tagEN;
-            const duration = lang === 'bm' ? item.durationBM : item.durationEN;
-            const desc = lang === 'bm' ? item.descBM : item.descEN;
-            const highlights = lang === 'bm' ? item.highlightsBM : item.highlightsEN;
+            const title = item.titleEN;
+            const tag = item.tagEN;
+            const duration = item.durationEN;
+            const desc = item.descEN;
+            const highlights = item.highlightsEN;
             const isDamon = item.id === 'ba1';
 
             const beforeLabel = isDamon 
-              ? (lang === 'bm' ? 'Sebelum (Gigi Bertindih)' : 'Before (Crowded)')
-              : (lang === 'bm' ? 'Sebelum (Kuning/Kotoran)' : 'Before (Discolored)');
+              ? 'Before (Crowded)'
+              : 'Before (Discolored)';
 
             const afterLabel = isDamon
-              ? (lang === 'bm' ? 'Selepas (Damon Braces)' : 'After (Damon Braces)')
-              : (lang === 'bm' ? 'Selepas (Putih Berseri)' : 'After (Bright White)');
+              ? 'After (Damon Braces)'
+              : 'After (Bright White)';
 
             return (
               <div
@@ -92,10 +85,6 @@ export const BeforeAfterGallery: React.FC<BeforeAfterGalleryProps> = ({ lang }) 
                         className="w-full h-auto max-h-[380px] object-contain mx-auto rounded-xl group-hover:scale-[1.02] transition-transform duration-500"
                       />
                     ) : (
-                      /* Whitening: the combined photo is stacked top (before) / bottom
-                         (after). Show it as two side-by-side halves — before | after —
-                         so it matches the Damon card. Each cell is a centre crop of its
-                         half (200% zoom, positioned to the top or bottom band). */
                       <div className="grid grid-cols-2 gap-1 rounded-xl overflow-hidden group-hover:scale-[1.02] transition-transform duration-500">
                         <div
                           role="img"
@@ -125,7 +114,7 @@ export const BeforeAfterGallery: React.FC<BeforeAfterGalleryProps> = ({ lang }) 
 
                     <div className="absolute top-3 right-3 bg-slate-900/80 text-amber-300 px-2.5 py-1 rounded-lg text-xs font-bold opacity-80 group-hover:opacity-100 transition flex items-center gap-1 border border-amber-500/20">
                       <Maximize2 className="w-3.5 h-3.5" />
-                      <span className="text-[10px] hidden sm:inline">{lang === 'bm' ? 'Zoom High-Res' : 'Zoom High-Res'}</span>
+                      <span className="text-[10px] hidden sm:inline">Zoom High-Res</span>
                     </div>
                   </div>
 
@@ -148,23 +137,19 @@ export const BeforeAfterGallery: React.FC<BeforeAfterGalleryProps> = ({ lang }) 
 
                 <div className="pt-4 border-t border-slate-200 flex items-center justify-between">
                   <a
-                    href={`https://wa.me/${CLINIC_INFO.whatsappNumberDigits}?text=${encodeURIComponent(`Salam Klinik Alan Adlan, saya berminat nak buat rawatan ${title}. Boleh saya tanya pelan ansuran?`)}`}
+                    href={`https://wa.me/${CLINIC_INFO.whatsappNumberDigits}?text=${encodeURIComponent(`Hi Klinik Alan Adlan, I am interested in ${title}. Can I inquire about payment plans?`)}`}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 bg-slate-900 text-amber-300 hover:bg-slate-800 text-xs font-bold px-4 py-2.5 rounded-xl transition shadow-xs"
                   >
                     <MessageCircle className="w-4 h-4 text-amber-300" />
                     <span>
-                      {isDamon 
-                        ? (lang === 'bm' ? 'Tanya Ansuran Damon Braces' : 'Inquire Damon Installments')
-                        : (lang === 'bm' ? 'Tanya Slot Whitening' : 'Book Whitening Slot')}
+                      {isDamon ? 'Inquire Damon Installments' : 'Book Whitening Slot'}
                     </span>
                   </a>
 
                   <span className="text-[11px] font-bold text-slate-500">
-                    {isDamon 
-                      ? (lang === 'bm' ? 'Ansuran RM250/bln' : 'From RM250/mth')
-                      : (lang === 'bm' ? 'Harga Promosi' : 'Promo Rates')}
+                    {isDamon ? 'From RM250/mth' : 'Promo Rates'}
                   </span>
                 </div>
 
@@ -188,7 +173,7 @@ export const BeforeAfterGallery: React.FC<BeforeAfterGalleryProps> = ({ lang }) 
             <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800">
               <h3 className="text-sm font-bold text-amber-300 flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-amber-400" />
-                <span>{selectedImage.title} - Foto Kes Klinikal Original</span>
+                <span>{selectedImage.title} - Clinical Case Details</span>
               </h3>
               <button
                 onClick={() => setSelectedImage(null)}

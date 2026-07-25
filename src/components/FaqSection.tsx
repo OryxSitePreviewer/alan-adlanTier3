@@ -1,13 +1,8 @@
 import React, { useState, useMemo } from 'react';
-import { Language } from '../types';
 import { FAQS_DATA, CLINIC_INFO } from '../data/clinicData';
 import { ChevronDown, HelpCircle, MessageCircle } from 'lucide-react';
 
-interface FaqSectionProps {
-  lang: Language;
-}
-
-export const FaqSection: React.FC<FaqSectionProps> = ({ lang }) => {
+export const FaqSection: React.FC = () => {
   const [openFaqId, setOpenFaqId] = useState<string | null>(FAQS_DATA[0].id);
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
@@ -27,15 +22,13 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ lang }) => {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 bg-[#B8860B]/10 text-[#8B6508] border border-[#B8860B]/30 px-3.5 py-1.5 rounded-full text-xs font-bold mb-3">
             <HelpCircle className="w-4 h-4 text-[#B8860B]" />
-            <span>FAQ SOALAN LAZIM</span>
+            <span>PATIENT FAQ</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-slate-900 mb-4">
-            {lang === 'bm' ? 'Soalan Yang Sering Ditanya' : 'Frequently Asked Questions'}
+            Frequently Asked Questions
           </h2>
           <p className="text-slate-600 font-normal">
-            {lang === 'bm'
-              ? 'Jawapan pantas untuk soalan mengenai temujanji, ansuran braces, waktu operasi, dan rawatan pergigian.'
-              : 'Quick answers regarding appointments, braces installments, operating hours, and dental care.'}
+            Quick answers regarding appointments, braces installments, operating hours, and dental care.
           </p>
         </div>
 
@@ -49,7 +42,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ lang }) => {
                 : 'bg-[#FAF8F5] text-slate-700 border border-slate-200 hover:bg-slate-100'
             }`}
           >
-            {lang === 'bm' ? 'Semua Soalan' : 'All FAQs'}
+            All FAQs
           </button>
           <button
             onClick={() => setActiveCategory('braces')}
@@ -59,7 +52,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ lang }) => {
                 : 'bg-[#FAF8F5] text-slate-700 border border-slate-200 hover:bg-slate-100'
             }`}
           >
-            {lang === 'bm' ? 'Ortodontik / Braces' : 'Orthodontics & Braces'}
+            Orthodontics & Braces
           </button>
           <button
             onClick={() => setActiveCategory('payment')}
@@ -69,7 +62,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ lang }) => {
                 : 'bg-[#FAF8F5] text-slate-700 border border-slate-200 hover:bg-slate-100'
             }`}
           >
-            {lang === 'bm' ? 'Pembayaran & Ansuran' : 'Payment & Installment'}
+            Payment & Installment
           </button>
           <button
             onClick={() => setActiveCategory('general')}
@@ -79,7 +72,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ lang }) => {
                 : 'bg-[#FAF8F5] text-slate-700 border border-slate-200 hover:bg-slate-100'
             }`}
           >
-            {lang === 'bm' ? 'Waktu Operasi & Walk-In' : 'Hours & Walk-In'}
+            Hours & Walk-In
           </button>
         </div>
 
@@ -87,8 +80,8 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ lang }) => {
         <div className="space-y-4">
           {filteredFaqs.map(faq => {
             const isOpen = openFaqId === faq.id;
-            const question = lang === 'bm' ? faq.questionBM : faq.questionEN;
-            const answer = lang === 'bm' ? faq.answerBM : faq.answerEN;
+            const question = faq.questionEN;
+            const answer = faq.answerEN;
 
             return (
               <div
@@ -120,18 +113,16 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ lang }) => {
         {/* Help Banner */}
         <div className="mt-12 text-center bg-[#FAF8F5] p-6 rounded-2xl border border-slate-200 shadow-xs">
           <p className="text-slate-700 text-sm font-semibold mb-3">
-            {lang === 'bm'
-              ? 'Ada soalan spesifik yang tidak tersenarai di atas?'
-              : 'Have a specific question not listed above?'}
+            Have a specific question not listed above?
           </p>
           <a
-            href={`https://wa.me/${CLINIC_INFO.whatsappNumberDigits}?text=${encodeURIComponent('Salam Klinik Alan Adlan, saya ada soalan mengenai rawatan pergigian.')}`}
+            href={`https://wa.me/${CLINIC_INFO.whatsappNumberDigits}?text=${encodeURIComponent('Hi Klinik Alan Adlan, I have a question about dental treatments.')}`}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#8B6508] hover:text-[#B8860B] bg-[#B8860B]/15 px-5 py-2.5 rounded-full border border-[#B8860B]/30 transition"
           >
             <MessageCircle className="w-4 h-4 fill-current" />
-            <span>{lang === 'bm' ? 'Tanya Pasukan Klinik di WhatsApp' : 'Ask Our Clinic Team on WhatsApp'}</span>
+            <span>Ask Our Clinic Team on WhatsApp</span>
           </a>
         </div>
 

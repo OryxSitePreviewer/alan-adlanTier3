@@ -1,13 +1,8 @@
 import React from 'react';
-import { Language } from '../types';
 import { CLINIC_INFO } from '../data/clinicData';
 import { Star, CalendarDays, Heart, Sparkles } from 'lucide-react';
 
-interface StatsBannerProps {
-  lang: Language;
-}
-
-export const StatsBanner: React.FC<StatsBannerProps> = ({ lang }) => {
+export const StatsBanner: React.FC = () => {
   return (
     <section className="bg-transparent text-slate-800 py-10 border-t border-b border-slate-200 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,17 +14,17 @@ export const StatsBanner: React.FC<StatsBannerProps> = ({ lang }) => {
               <span>{CLINIC_INFO.googleRating} / 5.0</span>
             </div>
             <div className="text-slate-600 text-xs sm:text-sm font-semibold">
-              {lang === 'bm' ? `${CLINIC_INFO.googleReviewCount}+ Ulasan Google Sah` : `${CLINIC_INFO.googleReviewCount}+ Verified Google Reviews`}
+              {CLINIC_INFO.googleReviewCount}+ Verified Google Reviews
             </div>
           </div>
 
           <div className="p-4 border-r border-slate-200 last:border-0 md:last:border-r">
             <div className="flex items-center justify-center gap-1.5 text-2xl lg:text-3xl font-serif font-bold text-[#8B6508] mb-1">
               <CalendarDays className="w-6 h-6 text-[#B8860B]" />
-              <span>7 {lang === 'bm' ? 'Hari' : 'Days'}</span>
+              <span>7 Days</span>
             </div>
             <div className="text-slate-600 text-xs sm:text-sm font-semibold">
-              {lang === 'bm' ? 'Beroperasi Isnin - Ahad (9AM-9PM)' : 'Operating Monday - Sunday (9AM-9PM)'}
+              Operating Monday - Sunday (9AM-9PM)
             </div>
           </div>
 
@@ -39,7 +34,7 @@ export const StatsBanner: React.FC<StatsBannerProps> = ({ lang }) => {
               <span>100%</span>
             </div>
             <div className="text-slate-600 text-xs sm:text-sm font-semibold">
-              {lang === 'bm' ? 'Rawatan Mesra & Prihatin Pesakit' : 'Gentle & Patient-Centric Care'}
+              Gentle & Patient-Centric Care
             </div>
           </div>
 
@@ -49,7 +44,7 @@ export const StatsBanner: React.FC<StatsBannerProps> = ({ lang }) => {
               <span>10+</span>
             </div>
             <div className="text-slate-600 text-xs sm:text-sm font-semibold">
-              {lang === 'bm' ? 'Perkhidmatan Rawatan Lengkap' : 'Comprehensive Treatment Services'}
+              Comprehensive Treatment Services
             </div>
           </div>
 

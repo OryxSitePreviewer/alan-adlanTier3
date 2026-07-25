@@ -1,5 +1,4 @@
 import React, { useState, lazy, Suspense } from 'react';
-import { Language } from './types';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { StatsBanner } from './components/StatsBanner';
@@ -25,7 +24,6 @@ const SectionLoader = () => (
 );
 
 export default function App() {
-  const [lang, setLang] = useState<Language>('bm');
   const [bookingModalOpen, setBookingModalOpen] = useState<boolean>(false);
   const [selectedTreatmentId, setSelectedTreatmentId] = useState<string | undefined>(undefined);
 
@@ -57,35 +55,31 @@ export default function App() {
 
       {/* Sticky Navigation Header */}
       <Header
-        lang={lang}
-        setLang={setLang}
         onOpenBooking={() => handleOpenBooking()}
       />
 
       {/* Main Content Sections */}
       <main className="flex-grow">
-        {/* Hero Section — opacity-only fade to avoid a layout jump on the LCP section */}
+        {/* Hero Section */}
         <Reveal y={0}>
           <Hero
-            lang={lang}
             onOpenBooking={() => handleOpenBooking()}
           />
         </Reveal>
 
         {/* Highlight Stats Bar */}
         <Reveal>
-          <StatsBanner lang={lang} />
+          <StatsBanner />
         </Reveal>
 
         {/* About Clinic Section */}
         <Reveal>
-          <AboutSection lang={lang} />
+          <AboutSection />
         </Reveal>
 
         {/* Services & Treatments Catalog */}
         <Reveal>
           <ServicesSection
-            lang={lang}
             onOpenBookingWithTreatment={(id) => handleOpenBooking(id)}
           />
         </Reveal>
@@ -94,39 +88,39 @@ export default function App() {
         <Suspense fallback={<SectionLoader />}>
           {/* Founder & Principal Surgeon Spotlight */}
           <Reveal>
-            <FounderSection lang={lang} />
+            <FounderSection />
           </Reveal>
 
           {/* Interactive Price Estimator & Calculator */}
           <Reveal>
-            <PriceCalculator lang={lang} />
+            <PriceCalculator />
           </Reveal>
 
           {/* Before & After Smile Gallery */}
           <Reveal>
-            <BeforeAfterGallery lang={lang} />
+            <BeforeAfterGallery />
           </Reveal>
 
           {/* Patient Reviews & Google Ratings */}
           <Reveal>
-            <ReviewsSection lang={lang} />
+            <ReviewsSection />
           </Reveal>
 
           {/* FAQ Accordion */}
           <Reveal>
-            <FaqSection lang={lang} />
+            <FaqSection />
           </Reveal>
 
           {/* Contact, Hours & Map Location */}
           <Reveal>
-            <ContactSection lang={lang} />
+            <ContactSection />
           </Reveal>
         </Suspense>
       </main>
 
       {/* Footer */}
       <Reveal>
-        <Footer lang={lang} />
+        <Footer />
       </Reveal>
 
       {/* Lazy Loaded Booking Modal */}
@@ -135,7 +129,6 @@ export default function App() {
           <BookingModal
             isOpen={bookingModalOpen}
             onClose={handleCloseBooking}
-            lang={lang}
             initialTreatmentId={selectedTreatmentId}
           />
         )}
@@ -143,7 +136,6 @@ export default function App() {
 
       {/* Floating WhatsApp Quick Assistant */}
       <FloatingWhatsApp
-        lang={lang}
         onOpenBooking={() => handleOpenBooking()}
       />
 

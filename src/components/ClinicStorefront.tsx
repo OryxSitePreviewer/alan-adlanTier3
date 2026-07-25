@@ -1,15 +1,13 @@
 import React from 'react';
-import { Language } from '../types';
 import { CLINIC_INFO } from '../data/clinicData';
 import { ClinicLogo } from './ClinicLogo';
 import { MapPin, Navigation, ExternalLink, Phone, ShieldCheck, Sparkles } from 'lucide-react';
 
 interface ClinicStorefrontProps {
-  lang: Language;
   compact?: boolean;
 }
 
-export const ClinicStorefront: React.FC<ClinicStorefrontProps> = ({ lang, compact = false }) => {
+export const ClinicStorefront: React.FC<ClinicStorefrontProps> = ({ compact = false }) => {
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-xl border border-slate-200 text-slate-800">
       
@@ -26,7 +24,7 @@ export const ClinicStorefront: React.FC<ClinicStorefrontProps> = ({ lang, compac
         <div className="relative z-10 flex flex-col gap-3">
           <div className="inline-flex items-center gap-2 bg-amber-400/20 border border-amber-400/40 text-amber-300 px-3 py-1 rounded-full text-xs font-semibold w-fit">
             <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-            <span>{lang === 'bm' ? 'Fasad & Premis Utama Klinik' : 'Main Clinic Building & Storefront'}</span>
+            <span>Main Clinic Building & Storefront</span>
           </div>
 
           <div className="flex items-center gap-4">
@@ -66,9 +64,7 @@ export const ClinicStorefront: React.FC<ClinicStorefrontProps> = ({ lang, compac
                 <span>Ground Floor & First Floor (No 3 & 3A)</span>
               </p>
               <p className="text-xs text-slate-200 font-normal leading-relaxed">
-                {lang === 'bm'
-                  ? 'Klinik dua tingkat bersaiz luas lengkap dengan bilik rawatan moden, surau, dan fasiliti mesra pesakit.'
-                  : 'Spacious two-storey dental clinic with modern surgery rooms, prayer room, and patient-friendly facilities.'}
+                Spacious two-storey dental clinic with modern surgery rooms, prayer room, and patient-friendly facilities.
               </p>
             </div>
           </div>
@@ -81,18 +77,18 @@ export const ClinicStorefront: React.FC<ClinicStorefrontProps> = ({ lang, compac
         {/* Treatment Oval Sign replica from storefront photo */}
         <div className="bg-white border border-slate-200 rounded-xl p-3 shadow-xs text-center">
           <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 block mb-1.5">
-            {lang === 'bm' ? 'Perkhidmatan Utama Fasad Klinik' : 'Key Dental Specialties'}
+            Key Dental Specialties
           </span>
           <div className="flex flex-wrap items-center justify-center gap-1.5 text-xs font-semibold text-slate-800">
-            <span className="px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-200/60 rounded-full">ESTETIK</span>
+            <span className="px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-200/60 rounded-full">AESTHETIC</span>
             <span className="text-slate-300">•</span>
-            <span className="px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-200/60 rounded-full">IMPLAN</span>
+            <span className="px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-200/60 rounded-full">IMPLANTS</span>
             <span className="text-slate-300">•</span>
-            <span className="px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-200/60 rounded-full">ORTODONTIK</span>
+            <span className="px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-200/60 rounded-full">ORTHODONTICS</span>
             <span className="text-slate-300">•</span>
-            <span className="px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-200/60 rounded-full">PEMUTIHAN GIGI</span>
+            <span className="px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-200/60 rounded-full">TEETH WHITENING</span>
             <span className="text-slate-300">•</span>
-            <span className="px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-200/60 rounded-full">RAWATAN SALUR AKAR</span>
+            <span className="px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-200/60 rounded-full">ROOT CANAL</span>
           </div>
         </div>
 

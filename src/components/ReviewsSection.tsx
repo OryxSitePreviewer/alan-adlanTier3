@@ -1,22 +1,17 @@
 import React, { useState } from 'react';
-import { Language } from '../types';
 import { REVIEWS_DATA, CLINIC_INFO } from '../data/clinicData';
-import { Star, CheckCircle2, ExternalLink, Quote, Filter, ThumbsUp } from 'lucide-react';
-
-interface ReviewsSectionProps {
-  lang: Language;
-}
+import { Star, CheckCircle2, ExternalLink, Filter, ThumbsUp } from 'lucide-react';
 
 const REVIEW_CATEGORIES = [
-  { id: 'all', labelBM: 'Semua Ulasan', labelEN: 'All Reviews' },
-  { id: 'braces', labelBM: 'Braces', labelEN: 'Braces' },
-  { id: 'surgery', labelBM: 'Pembedahan & Cabut', labelEN: 'Surgery & Wisdom' },
-  { id: 'scaling', labelBM: 'Cuci Gigi (Scaling)', labelEN: 'Scaling & Cleaning' },
-  { id: 'implant', labelBM: 'Implan Gigi', labelEN: 'Dental Implants' },
-  { id: 'general', labelBM: 'Rawatan Am & Salur Akar', labelEN: 'General Care' },
+  { id: 'all', labelEN: 'All Reviews' },
+  { id: 'braces', labelEN: 'Braces' },
+  { id: 'surgery', labelEN: 'Surgery & Wisdom' },
+  { id: 'scaling', labelEN: 'Scaling & Cleaning' },
+  { id: 'implant', labelEN: 'Dental Implants' },
+  { id: 'general', labelEN: 'General Care' },
 ];
 
-export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ lang }) => {
+export const ReviewsSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   const filteredReviews = React.useMemo(() => {
@@ -35,16 +30,14 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ lang }) => {
             <div className="inline-flex items-center gap-2 bg-[#B8860B]/10 border border-[#B8860B]/30 px-3 py-1 rounded-full mb-3">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span className="text-[#8B6508] font-bold text-xs uppercase tracking-wider">
-                {lang === 'bm' ? 'Google Reviews Rasmi Sah' : 'Official Google Reviews'}
+                Official Google Reviews
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-slate-900">
-              {lang === 'bm' ? 'Pengalaman & Maklum Balas Pesakit' : 'Patient Experiences & Reviews'}
+              Patient Experiences & Reviews
             </h2>
             <p className="text-slate-600 text-sm mt-2 max-w-2xl">
-              {lang === 'bm'
-                ? 'Ulasan tulen daripada pesakit yang telah mendapatkan rawatan pergigian di Klinik Pergigian Alan Adlan Bandar Baru Bangi.'
-                : 'Genuine feedback from patients treated at Klinik Pergigian Alan Adlan Bandar Baru Bangi.'}
+              Genuine feedback from patients treated at Klinik Pergigian Alan Adlan Bandar Baru Bangi.
             </p>
           </div>
 
@@ -65,7 +58,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ lang }) => {
                   </div>
                 </div>
                 <span className="text-slate-500 text-xs block font-medium mt-0.5">
-                  {lang === 'bm' ? `(${CLINIC_INFO.googleReviewCount}+ Ulasan Google Sah)` : `(${CLINIC_INFO.googleReviewCount}+ Google Reviews)`}
+                  ({CLINIC_INFO.googleReviewCount}+ Google Reviews)
                 </span>
               </div>
             </div>
@@ -76,7 +69,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ lang }) => {
               rel="noreferrer"
               className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 text-xs font-bold px-4 py-3 rounded-2xl transition shadow-xs"
             >
-              <span>{lang === 'bm' ? 'Buka di Google Maps' : 'View on Google Maps'}</span>
+              <span>View on Google Maps</span>
               <ExternalLink className="w-3.5 h-3.5 text-amber-600" />
             </a>
           </div>
@@ -86,11 +79,10 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ lang }) => {
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
           <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium mr-2 shrink-0">
             <Filter className="w-3.5 h-3.5" />
-            <span>{lang === 'bm' ? 'Tapis Rawatan:' : 'Filter Treatment:'}</span>
+            <span>Filter Treatment:</span>
           </div>
           {REVIEW_CATEGORIES.map(cat => {
             const isActive = selectedCategory === cat.id;
-            const label = lang === 'bm' ? cat.labelBM : cat.labelEN;
             return (
               <button
                 key={cat.id}
@@ -101,7 +93,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ lang }) => {
                     : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:text-slate-900'
                 }`}
               >
-                {label}
+                {cat.labelEN}
               </button>
             );
           })}
@@ -110,8 +102,8 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ lang }) => {
         {/* Review Cards Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredReviews.map(review => {
-            const text = lang === 'bm' ? review.textBM : review.textEN;
-            const treatment = lang === 'bm' ? review.treatmentBM : review.treatmentEN;
+            const text = review.textEN;
+            const treatment = review.treatmentEN;
 
             return (
               <div
@@ -148,7 +140,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ lang }) => {
                       <h4 className="font-bold text-slate-900 text-xs sm:text-sm">{review.name}</h4>
                       <span className="text-[11px] text-slate-500 flex items-center gap-1 font-medium">
                         <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                        {lang === 'bm' ? 'Pesakit Disahkan Google' : 'Verified Google Patient'}
+                        Verified Google Patient
                       </span>
                     </div>
                   </div>
@@ -166,15 +158,13 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ lang }) => {
           <div className="space-y-1 text-center sm:text-left">
             <div className="flex items-center justify-center sm:justify-start gap-2 text-xs font-bold text-amber-700">
               <ThumbsUp className="w-4 h-4 text-amber-600" />
-              <span>{lang === 'bm' ? 'Pernah Merawat Gigi di Sini?' : 'Have you visited us before?'}</span>
+              <span>Have you visited us before?</span>
             </div>
             <h3 className="text-xl font-serif font-bold text-slate-900">
-              {lang === 'bm' ? 'Bantu Kami Dengan Kongsi Ulasan Anda di Google' : 'Share Your Experience on Google'}
+              Share Your Experience on Google
             </h3>
             <p className="text-slate-600 text-xs sm:text-sm font-normal">
-              {lang === 'bm'
-                ? 'Sumbangan maklum balas anda amat berharga buat komuniti dan pesakit baharu.'
-                : 'Your feedback helps other patients make confident decisions for their dental health.'}
+              Your feedback helps other patients make confident decisions for their dental health.
             </p>
           </div>
 
@@ -185,17 +175,17 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ lang }) => {
               rel="noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-slate-900 text-amber-300 font-bold px-5 py-3 rounded-xl hover:bg-slate-800 transition text-xs shadow-xs text-center"
             >
-              <span>{lang === 'bm' ? 'Tulis Ulasan di Google' : 'Write a Google Review'}</span>
+              <span>Write a Google Review</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
 
             <a
-              href={`https://wa.me/${CLINIC_INFO.whatsappNumberDigits}?text=${encodeURIComponent('Salam Klinik Alan Adlan, saya hendak membuat temujanji.')}`}
+              href={`https://wa.me/${CLINIC_INFO.whatsappNumberDigits}?text=${encodeURIComponent('Hi Klinik Alan Adlan, I would like to book an appointment.')}`}
               target="_blank"
               rel="noreferrer"
               className="gold-bg-gradient text-slate-950 font-bold px-6 py-3 rounded-xl shadow-md hover:opacity-95 transition text-xs text-center"
             >
-              {lang === 'bm' ? 'Tempah Temujanji via WhatsApp' : 'Book Appointment via WhatsApp'}
+              Book Appointment via WhatsApp
             </a>
           </div>
         </div>

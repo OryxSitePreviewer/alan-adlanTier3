@@ -1,14 +1,9 @@
 import React from 'react';
-import { Language } from '../types';
 import { CLINIC_INFO } from '../data/clinicData';
 import { ClinicLogo } from './ClinicLogo';
-import { Award, ShieldCheck, Heart, Stethoscope, Sparkles, Quote, Calendar, CheckCircle, MessageCircle } from 'lucide-react';
+import { Award, ShieldCheck, Heart, Stethoscope, Sparkles, Quote, CheckCircle, MessageCircle } from 'lucide-react';
 
-interface FounderSectionProps {
-  lang: Language;
-}
-
-export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
+export const FounderSection: React.FC = () => {
   return (
     <section className="py-16 bg-transparent border-b border-slate-200 overflow-hidden relative">
       {/* Decorative Gold Accent Background Circle */}
@@ -21,23 +16,13 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-400/40 text-amber-900 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
             <Sparkles className="w-4 h-4 text-amber-600" />
-            <span>{lang === 'bm' ? 'Pengasas & Doktor Pergigian Utama' : 'Founder & Principal Dental Surgeon'}</span>
+            <span>Founder & Principal Dental Surgeon</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-slate-900 leading-tight">
-            {lang === 'bm' ? (
-              <>
-                Kepimpinan Profesional oleh <span className="gold-gradient-text">{CLINIC_INFO.doctorName}</span>
-              </>
-            ) : (
-              <>
-                Professional Leadership by <span className="gold-gradient-text">{CLINIC_INFO.doctorName}</span>
-              </>
-            )}
+            Professional Leadership by <span className="gold-gradient-text">{CLINIC_INFO.doctorName}</span>
           </h2>
           <p className="text-slate-600 text-sm sm:text-base mt-2">
-            {lang === 'bm'
-              ? 'Membawa kepakaran pergigian komprehensif, estetika, dan penjagaan peribadi beretika tinggi ke Bandar Baru Bangi.'
-              : 'Bringing comprehensive dental expertise, aesthetics, and high-ethical personalized patient care to Bandar Baru Bangi.'}
+            Bringing comprehensive dental expertise, aesthetics, and high-ethical personalized patient care to Bandar Baru Bangi.
           </p>
         </div>
 
@@ -88,7 +73,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
                   {CLINIC_INFO.doctorName}
                 </h3>
                 <p className="text-xs text-amber-300 font-medium">
-                  {lang === 'bm' ? CLINIC_INFO.doctorTitleBM : CLINIC_INFO.doctorTitleEN}
+                  {CLINIC_INFO.doctorTitleEN}
                 </p>
               </div>
             </div>
@@ -97,11 +82,11 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
             <div className="relative z-10 grid grid-cols-2 gap-2 pt-4 border-t border-slate-700/80 text-xs">
               <div className="flex items-center gap-2 bg-slate-800/80 p-2 rounded-xl border border-slate-700">
                 <Award className="w-4 h-4 text-amber-400 shrink-0" />
-                <span className="text-slate-200 font-medium">Pengalaman Klinikal Mampan</span>
+                <span className="text-slate-200 font-medium">Extensive Experience</span>
               </div>
               <div className="flex items-center gap-2 bg-slate-800/80 p-2 rounded-xl border border-slate-700">
                 <Heart className="w-4 h-4 text-amber-400 shrink-0" />
-                <span className="text-slate-200 font-medium">Servis Mesra & Lembut</span>
+                <span className="text-slate-200 font-medium">Gentle & Caring Service</span>
               </div>
             </div>
 
@@ -115,9 +100,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
               <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-amber-300/60 relative">
                 <Quote className="w-8 h-8 text-amber-400/40 absolute top-3 right-4" />
                 <p className="text-sm sm:text-base italic text-slate-800 font-serif leading-relaxed pr-6">
-                  {lang === 'bm'
-                    ? '"Matlamat kami di Klinik Pergigian Alan Adlan bukan sekadar merawat sakit gigi, malah memastikan setiap pesakit pulang dengan senyuman yang lebih sihat, berkeyakinan, dan perkhidmatan yang telus."'
-                    : '"Our mission at Klinik Pergigian Alan Adlan is not merely treating dental issues, but ensuring every patient walks out with a healthier, more confident smile through gentle, transparent care."'}
+                  "Our mission at Klinik Pergigian Alan Adlan is not merely treating dental issues, but ensuring every patient walks out with a healthier, more confident smile through gentle, transparent care."
                 </p>
                 <p className="text-xs font-bold text-[#8B6508] mt-3 uppercase tracking-wider">
                   — {CLINIC_INFO.doctorName}
@@ -127,39 +110,31 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
               {/* Bio Detail */}
               <div className="space-y-3 text-slate-600 text-sm leading-relaxed">
                 <p>
-                  {lang === 'bm' ? (
-                    <>
-                      Sebagai pengasas dan doktor pergigian utama, <strong className="text-slate-900 font-semibold">{CLINIC_INFO.doctorName}</strong> komited dalam memimpin klinik dengan standard etika profesional tertinggi. Beliau dan pasukan doktor senantiasa mengutamakan keselesaan pesakit serta menggunakan teknik pergigian moden yang kurang rasa sakit.
-                    </>
-                  ) : (
-                    <>
-                      As founder and principal surgeon, <strong className="text-slate-900 font-semibold">{CLINIC_INFO.doctorName}</strong> is dedicated to guiding the clinic with high professional standards. He and his team prioritize patient comfort and leverage modern, minimally invasive dental procedures.
-                    </>
-                  )}
+                  As founder and principal surgeon, <strong className="text-slate-900 font-semibold">{CLINIC_INFO.doctorName}</strong> is dedicated to guiding the clinic with high professional standards. He and his team prioritize patient comfort and leverage modern, minimally invasive dental procedures.
                 </p>
               </div>
 
               {/* Key Clinical Focus Areas */}
               <div>
                 <h4 className="text-xs uppercase font-bold text-slate-900 tracking-wider mb-3">
-                  {lang === 'bm' ? 'Fokus & Kepakaran Utama Klinik:' : 'Core Clinical Specializations:'}
+                  Core Clinical Specializations:
                 </h4>
                 <div className="grid sm:grid-cols-2 gap-2.5 text-xs text-slate-800">
                   <div className="flex items-center gap-2 p-2.5 rounded-xl bg-amber-50/70 border border-amber-200/60 font-medium">
                     <CheckCircle className="w-4 h-4 text-amber-600 shrink-0" />
-                    <span>Estetik & Pemutihan Gigi</span>
+                    <span>Teeth Whitening & Aesthetic Dentistry</span>
                   </div>
                   <div className="flex items-center gap-2 p-2.5 rounded-xl bg-amber-50/70 border border-amber-200/60 font-medium">
                     <CheckCircle className="w-4 h-4 text-amber-600 shrink-0" />
-                    <span>Implan Gigi & Pembedahan Mulut</span>
+                    <span>Dental Implants & Oral Surgery</span>
                   </div>
                   <div className="flex items-center gap-2 p-2.5 rounded-xl bg-amber-50/70 border border-amber-200/60 font-medium">
                     <CheckCircle className="w-4 h-4 text-amber-600 shrink-0" />
-                    <span>Ortodontik & Braces (Gigi Besi)</span>
+                    <span>Orthodontics & Braces</span>
                   </div>
                   <div className="flex items-center gap-2 p-2.5 rounded-xl bg-amber-50/70 border border-amber-200/60 font-medium">
                     <CheckCircle className="w-4 h-4 text-amber-600 shrink-0" />
-                    <span>Rawatan Salur Akar & Apikoektomi</span>
+                    <span>Root Canal & Apicoectomy</span>
                   </div>
                 </div>
               </div>
@@ -172,13 +147,13 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
                 <span className="font-bold text-slate-800">{CLINIC_INFO.name}</span> • Bandar Baru Bangi
               </div>
               <a
-                href={`https://wa.me/${CLINIC_INFO.whatsappNumberDigits}?text=${encodeURIComponent(`Salam Dr. ${CLINIC_INFO.doctorName}, saya ingin membuat temu janji konsultasi pergigian.`)}`}
+                href={`https://wa.me/${CLINIC_INFO.whatsappNumberDigits}?text=${encodeURIComponent(`Hi Dr. ${CLINIC_INFO.doctorName}, I would like to book a dental consultation.`)}`}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 gold-bg-gradient text-slate-950 font-bold text-xs px-5 py-3 rounded-xl shadow-md hover:opacity-95 transition"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>{lang === 'bm' ? 'Konsultasi Bersama Dr. Adlan' : 'Consult with Dr. Adlan'}</span>
+                <span>Consult with Dr. Adlan</span>
               </a>
             </div>
 
@@ -191,23 +166,13 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
           <div className="text-center max-w-2xl mx-auto mb-10">
             <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-400/40 text-amber-900 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
               <Stethoscope className="w-4 h-4 text-amber-600" />
-              <span>{lang === 'bm' ? 'Pasukan Doktor Pergigian Bertauliah' : 'Our Certified Dental Team'}</span>
+              <span>Our Certified Dental Team</span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-serif font-bold text-slate-900">
-              {lang === 'bm' ? (
-                <>
-                  Doktor Pergigian Berpengalaman di <span className="gold-gradient-text">Alan Adlan</span>
-                </>
-              ) : (
-                <>
-                  Experienced Dental Surgeons at <span className="gold-gradient-text">Alan Adlan</span>
-                </>
-              )}
+              Experienced Dental Surgeons at <span className="gold-gradient-text">Alan Adlan</span>
             </h3>
             <p className="text-slate-600 text-xs sm:text-sm mt-2">
-              {lang === 'bm'
-                ? 'Barisan doktor pergigian bertauliah (Berdaftar MMC) yang bersedia memberikan perawatan profesional & kurang rasa sakit.'
-                : 'Our team of MMC-registered dental surgeons ready to provide gentle, highly professional dental care.'}
+              Our team of MMC-registered dental surgeons ready to provide gentle, highly professional dental care.
             </p>
           </div>
 
@@ -223,17 +188,17 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                 />
                 <span className="absolute bottom-2 left-2 right-2 bg-slate-900/80 backdrop-blur-xs text-[10px] text-amber-300 font-bold py-0.5 rounded">
-                  Pengasas / Founder
+                  Founder
                 </span>
               </div>
               <h4 className="font-serif font-bold text-slate-900 text-sm sm:text-base">
                 Dr. Mohd Rusman Adlan
               </h4>
               <p className="text-xs text-amber-800 font-medium mt-0.5 mb-2">
-                Doktor Pergigian Utama (MMC Registered)
+                Principal Dental Surgeon (MMC Registered)
               </p>
               <span className="text-[11px] text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full font-medium">
-                Klinikal, Implan & Estetik
+                Clinical, Implants & Aesthetics
               </span>
             </div>
 
@@ -247,7 +212,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                 />
                 <span className="absolute bottom-2 left-2 right-2 bg-slate-900/80 backdrop-blur-xs text-[10px] text-amber-300 font-bold py-0.5 rounded">
-                  Doktor Pergigian
+                  Dental Surgeon
                 </span>
               </div>
               <h4 className="font-serif font-bold text-slate-900 text-sm sm:text-base">
@@ -257,7 +222,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
                 Dental Surgeon (MMC Registered)
               </p>
               <span className="text-[11px] text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full font-medium">
-                Restoratif & Braces
+                Restorative & Braces
               </span>
             </div>
 
@@ -271,7 +236,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                 />
                 <span className="absolute bottom-2 left-2 right-2 bg-slate-900/80 backdrop-blur-xs text-[10px] text-amber-300 font-bold py-0.5 rounded">
-                  Doktor Pergigian
+                  Dental Surgeon
                 </span>
               </div>
               <h4 className="font-serif font-bold text-slate-900 text-sm sm:text-base">
@@ -281,7 +246,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
                 Dental Surgeon (MMC Registered)
               </p>
               <span className="text-[11px] text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full font-medium">
-                Pencegahan & Salur Akar
+                Preventive & Root Canal
               </span>
             </div>
 
@@ -295,7 +260,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
                 />
                 <span className="absolute bottom-2 left-2 right-2 bg-slate-900/80 backdrop-blur-xs text-[10px] text-amber-300 font-bold py-0.5 rounded">
-                  Doktor Pergigian
+                  Dental Surgeon
                 </span>
               </div>
               <h4 className="font-serif font-bold text-slate-900 text-sm sm:text-base">
@@ -305,7 +270,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
                 Dental Surgeon (MMC Registered)
               </p>
               <span className="text-[11px] text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full font-medium">
-                Pembedahan & Gigi Palsu
+                Oral Surgery & Dentures
               </span>
             </div>
 
