@@ -24,7 +24,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ lang }) => {
     : REVIEWS_DATA.filter(r => r.category === selectedCategory || (selectedCategory === 'general' && (!r.category || r.category === 'general')));
 
   return (
-    <section id="reviews" className="py-20 bg-[#FAF8F5] text-slate-800 relative border-b border-slate-200">
+    <section id="reviews" className="py-20 bg-transparent text-slate-800 relative border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
