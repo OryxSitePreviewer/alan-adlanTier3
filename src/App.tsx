@@ -7,6 +7,7 @@ import { AboutSection } from './components/AboutSection';
 import { ServicesSection } from './components/ServicesSection';
 import { Footer } from './components/Footer';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
+import { Reveal } from './components/Reveal';
 
 // Dynamic lazy imports for heavy below-the-fold sections
 const FounderSection = lazy(() => import('./components/FounderSection').then(m => ({ default: m.FounderSection })));
@@ -63,48 +64,70 @@ export default function App() {
 
       {/* Main Content Sections */}
       <main className="flex-grow">
-        {/* Hero Section */}
-        <Hero
-          lang={lang}
-          onOpenBooking={() => handleOpenBooking()}
-        />
+        {/* Hero Section — opacity-only fade to avoid a layout jump on the LCP section */}
+        <Reveal y={0}>
+          <Hero
+            lang={lang}
+            onOpenBooking={() => handleOpenBooking()}
+          />
+        </Reveal>
 
         {/* Highlight Stats Bar */}
-        <StatsBanner lang={lang} />
+        <Reveal>
+          <StatsBanner lang={lang} />
+        </Reveal>
 
         {/* About Clinic Section */}
-        <AboutSection lang={lang} />
+        <Reveal>
+          <AboutSection lang={lang} />
+        </Reveal>
 
         {/* Services & Treatments Catalog */}
-        <ServicesSection
-          lang={lang}
-          onOpenBookingWithTreatment={(id) => handleOpenBooking(id)}
-        />
+        <Reveal>
+          <ServicesSection
+            lang={lang}
+            onOpenBookingWithTreatment={(id) => handleOpenBooking(id)}
+          />
+        </Reveal>
 
         {/* Lazy Loaded Sections */}
         <Suspense fallback={<SectionLoader />}>
           {/* Founder & Principal Surgeon Spotlight */}
-          <FounderSection lang={lang} />
+          <Reveal>
+            <FounderSection lang={lang} />
+          </Reveal>
 
           {/* Interactive Price Estimator & Calculator */}
-          <PriceCalculator lang={lang} />
+          <Reveal>
+            <PriceCalculator lang={lang} />
+          </Reveal>
 
           {/* Before & After Smile Gallery */}
-          <BeforeAfterGallery lang={lang} />
+          <Reveal>
+            <BeforeAfterGallery lang={lang} />
+          </Reveal>
 
           {/* Patient Reviews & Google Ratings */}
-          <ReviewsSection lang={lang} />
+          <Reveal>
+            <ReviewsSection lang={lang} />
+          </Reveal>
 
           {/* FAQ Accordion */}
-          <FaqSection lang={lang} />
+          <Reveal>
+            <FaqSection lang={lang} />
+          </Reveal>
 
           {/* Contact, Hours & Map Location */}
-          <ContactSection lang={lang} />
+          <Reveal>
+            <ContactSection lang={lang} />
+          </Reveal>
         </Suspense>
       </main>
 
       {/* Footer */}
-      <Footer lang={lang} />
+      <Reveal>
+        <Footer lang={lang} />
+      </Reveal>
 
       {/* Lazy Loaded Booking Modal */}
       <Suspense fallback={null}>
