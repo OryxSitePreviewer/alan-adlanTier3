@@ -13,24 +13,9 @@ export default defineConfig(() => {
       },
     },
     build: {
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              if (id.includes('react') || id.includes('react-dom')) {
-                return 'vendor-react';
-              }
-              if (id.includes('motion')) {
-                return 'vendor-motion';
-              }
-              if (id.includes('lucide-react')) {
-                return 'vendor-icons';
-              }
-              return 'vendor';
-            }
-          },
-        },
-      },
+      // No manualChunks: splitting react/react-dom into a separate chunk from
+      // libraries that depend on it (motion, lucide) breaks runtime init and
+      // blanks the page. A single bundle is known-good on both hosts.
       chunkSizeWarningLimit: 1000,
     },
     server: {
