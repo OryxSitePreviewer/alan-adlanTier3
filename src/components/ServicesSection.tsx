@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Language, ServiceItem } from '../types';
 import { SERVICES_DATA, CLINIC_INFO } from '../data/clinicData';
 import {
@@ -44,16 +44,17 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ lang, onOpenBo
     }
   };
 
-  const filteredServices = SERVICES_DATA.filter(service => {
-    const matchesCategory = activeCategory === 'all' || service.category === activeCategory;
-    const title = lang === 'bm' ? service.titleBM : service.titleEN;
-    const desc = lang === 'bm' ? service.descriptionBM : service.descriptionEN;
-    const matchesSearch =
-      title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      desc.toLowerCase().includes(searchTerm.toLowerCase());
-
-    return matchesCategory && matchesSearch;
-  });
+  const filteredServices = useMemo(() => {
+    const term = searchTerm.trim().toLowerCase();
+    return SERVICES_DATA.filter(service => {
+      const matchesCategory = activeCategory === 'all' || service.category === activeCategory;
+      if (!matchesCategory) return false;
+      if (!term) return true;
+      const title = lang === 'bm' ? service.titleBM : service.titleEN;
+      const desc = lang === 'bm' ? service.descriptionBM : service.descriptionEN;
+      return title.toLowerCase().includes(term) || desc.toLowerCase().includes(term);
+    });
+  }, [activeCategory, searchTerm, lang]);
 
   return (
     <section id="services" className="py-20 bg-white text-slate-800 relative border-b border-slate-200">

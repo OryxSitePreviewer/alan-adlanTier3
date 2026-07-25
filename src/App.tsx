@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { Language } from './types';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { StatsBanner } from './components/StatsBanner';
 import { AboutSection } from './components/AboutSection';
-import { FounderSection } from './components/FounderSection';
 import { ServicesSection } from './components/ServicesSection';
-import { PriceCalculator } from './components/PriceCalculator';
-import { BeforeAfterGallery } from './components/BeforeAfterGallery';
-import { ReviewsSection } from './components/ReviewsSection';
-import { FaqSection } from './components/FaqSection';
-import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { BookingModal } from './components/BookingModal';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
+
+// Dynamic lazy imports for heavy below-the-fold sections
+const FounderSection = lazy(() => import('./components/FounderSection').then(m => ({ default: m.FounderSection })));
+const PriceCalculator = lazy(() => import('./components/PriceCalculator').then(m => ({ default: m.PriceCalculator })));
+const BeforeAfterGallery = lazy(() => import('./components/BeforeAfterGallery').then(m => ({ default: m.BeforeAfterGallery })));
+const ReviewsSection = lazy(() => import('./components/ReviewsSection').then(m => ({ default: m.ReviewsSection })));
+const FaqSection = lazy(() => import('./components/FaqSection').then(m => ({ default: m.FaqSection })));
+const ContactSection = lazy(() => import('./components/ContactSection').then(m => ({ default: m.ContactSection })));
+const BookingModal = lazy(() => import('./components/BookingModal').then(m => ({ default: m.BookingModal })));
+
+const SectionLoader = () => (
+  <div className="py-12 flex items-center justify-center">
+    <div className="w-8 h-8 border-4 border-[#C5A059] border-t-transparent rounded-full animate-spin"></div>
+  </div>
+);
 
 export default function App() {
   const [lang, setLang] = useState<Language>('bm');
@@ -54,41 +62,48 @@ export default function App() {
         {/* About Clinic Section */}
         <AboutSection lang={lang} />
 
-        {/* Founder & Principal Surgeon Spotlight */}
-        <FounderSection lang={lang} />
-
         {/* Services & Treatments Catalog */}
         <ServicesSection
           lang={lang}
           onOpenBookingWithTreatment={(id) => handleOpenBooking(id)}
         />
 
-        {/* Interactive Price Estimator & Calculator */}
-        <PriceCalculator lang={lang} />
+        {/* Lazy Loaded Sections */}
+        <Suspense fallback={<SectionLoader />}>
+          {/* Founder & Principal Surgeon Spotlight */}
+          <FounderSection lang={lang} />
 
-        {/* Before & After Smile Gallery */}
-        <BeforeAfterGallery lang={lang} />
+          {/* Interactive Price Estimator & Calculator */}
+          <PriceCalculator lang={lang} />
 
-        {/* Patient Reviews & Google Ratings */}
-        <ReviewsSection lang={lang} />
+          {/* Before & After Smile Gallery */}
+          <BeforeAfterGallery lang={lang} />
 
-        {/* FAQ Accordion */}
-        <FaqSection lang={lang} />
+          {/* Patient Reviews & Google Ratings */}
+          <ReviewsSection lang={lang} />
 
-        {/* Contact, Hours & Map Location */}
-        <ContactSection lang={lang} />
+          {/* FAQ Accordion */}
+          <FaqSection lang={lang} />
+
+          {/* Contact, Hours & Map Location */}
+          <ContactSection lang={lang} />
+        </Suspense>
       </main>
 
       {/* Footer */}
       <Footer lang={lang} />
 
-      {/* Booking Modal */}
-      <BookingModal
-        isOpen={bookingModalOpen}
-        onClose={handleCloseBooking}
-        lang={lang}
-        initialTreatmentId={selectedTreatmentId}
-      />
+      {/* Lazy Loaded Booking Modal */}
+      <Suspense fallback={null}>
+        {bookingModalOpen && (
+          <BookingModal
+            isOpen={bookingModalOpen}
+            onClose={handleCloseBooking}
+            lang={lang}
+            initialTreatmentId={selectedTreatmentId}
+          />
+        )}
+      </Suspense>
 
       {/* Floating WhatsApp Quick Assistant */}
       <FloatingWhatsApp

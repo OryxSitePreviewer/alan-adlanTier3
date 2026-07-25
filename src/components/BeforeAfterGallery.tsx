@@ -83,6 +83,8 @@ export const BeforeAfterGallery: React.FC<BeforeAfterGalleryProps> = ({ lang }) 
                     <img
                       src={item.imageCombined}
                       alt={title}
+                      loading="lazy"
+                      decoding="async"
                       onError={(e) => {
                         e.currentTarget.src = isDamon ? "bracers.png" : "whitening.png";
                       }}

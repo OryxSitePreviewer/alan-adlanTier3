@@ -67,6 +67,8 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
                 <img
                   src="founder.jpg"
                   alt={CLINIC_INFO.doctorName}
+                  loading="lazy"
+                  decoding="async"
                   onError={(e) => {
                     // Fallback to high-quality dental surgeon portrait if local /founder.jpg isn't placed yet
                     e.currentTarget.src = "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80";
@@ -259,12 +261,12 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
               </span>
             </div>
 
-            {/* Doctor 3: Dr. Aasyafizah */}
+            {/* Doctor 3: Dr. Syafizah */}
             <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition flex flex-col items-center text-center group">
               <div className="w-36 h-48 rounded-xl overflow-hidden border-2 border-amber-400/60 shadow-sm bg-slate-100 mb-4 relative">
                 <img
                   src="dr-syafizah.jpg"
-                  alt="Dr. Aasyafizah"
+                  alt="Dr. Syafizah"
                   onError={(e) => { e.currentTarget.src = "aasyafizah.jfif"; }}
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                 />
@@ -273,7 +275,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ lang }) => {
                 </span>
               </div>
               <h4 className="font-serif font-bold text-slate-900 text-sm sm:text-base">
-                Dr. Aasyafizah
+                Dr. Syafizah
               </h4>
               <p className="text-xs text-amber-800 font-medium mt-0.5 mb-2">
                 Dental Surgeon (MMC Registered)

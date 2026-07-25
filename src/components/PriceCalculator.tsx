@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Language } from '../types';
 import { PRICE_CALCULATOR_ITEMS, CLINIC_INFO } from '../data/clinicData';
 import { Calculator, CheckCircle, MessageCircle, HelpCircle, DollarSign, Sparkles } from 'lucide-react';
@@ -11,20 +11,32 @@ export const PriceCalculator: React.FC<PriceCalculatorProps> = ({ lang }) => {
   const [selectedItemId, setSelectedItemId] = useState<string>(PRICE_CALCULATOR_ITEMS[0].id);
   const [quantity, setQuantity] = useState<number>(1);
 
-  const selectedItem = PRICE_CALCULATOR_ITEMS.find(item => item.id === selectedItemId) || PRICE_CALCULATOR_ITEMS[0];
+  const selectedItem = useMemo(() => {
+    return PRICE_CALCULATOR_ITEMS.find(item => item.id === selectedItemId) || PRICE_CALCULATOR_ITEMS[0];
+  }, [selectedItemId]);
 
-  const minTotal = selectedItem.minPrice * quantity;
-  const maxTotal = selectedItem.maxPrice * quantity;
+  const { minTotal, maxTotal, itemName, itemDesc, installmentText, whatsappMessage } = useMemo(() => {
+    const min = selectedItem.minPrice * quantity;
+    const max = selectedItem.maxPrice * quantity;
+    const name = lang === 'bm' ? selectedItem.nameBM : selectedItem.nameEN;
+    const desc = lang === 'bm' ? selectedItem.descriptionBM : selectedItem.descriptionEN;
+    const inst = lang === 'bm' ? selectedItem.monthlyInstallmentBM : selectedItem.monthlyInstallmentEN;
 
-  const itemName = lang === 'bm' ? selectedItem.nameBM : selectedItem.nameEN;
-  const itemDesc = lang === 'bm' ? selectedItem.descriptionBM : selectedItem.descriptionEN;
-  const installmentText = lang === 'bm' ? selectedItem.monthlyInstallmentBM : selectedItem.monthlyInstallmentEN;
+    const waMsg = encodeURIComponent(
+      lang === 'bm'
+        ? `Salam Klinik Alan Adlan, saya menggunakan kalkulator anggaran harga di laman web:\n- Rawatan: ${selectedItem.nameBM}\n- Kuantiti/Sesi: ${quantity}\n- Anggaran Harga: RM${min} - RM${max}\n\nSaya hendak bertanyakan tentang ketersediaan slot temujanji & pelan ansuran.`
+        : `Hi Klinik Alan Adlan, I calculated an estimate on your website:\n- Treatment: ${selectedItem.nameEN}\n- Quantity/Sessions: ${quantity}\n- Estimated Price: RM${min} - RM${max}\n\nI would like to inquire about appointment availability and payment plans.`
+    );
 
-  const whatsappMessage = encodeURIComponent(
-    lang === 'bm'
-      ? `Salam Klinik Alan Adlan, saya menggunakan kalkulator anggaran harga di laman web:\n- Rawatan: ${selectedItem.nameBM}\n- Kuantiti/Sesi: ${quantity}\n- Anggaran Harga: RM${minTotal} - RM${maxTotal}\n\nSaya hendak bertanyakan tentang ketersediaan slot temujanji & pelan ansuran.`
-      : `Hi Klinik Alan Adlan, I calculated an estimate on your website:\n- Treatment: ${selectedItem.nameEN}\n- Quantity/Sessions: ${quantity}\n- Estimated Price: RM${minTotal} - RM${maxTotal}\n\nI would like to inquire about appointment availability and payment plans.`
-  );
+    return {
+      minTotal: min,
+      maxTotal: max,
+      itemName: name,
+      itemDesc: desc,
+      installmentText: inst,
+      whatsappMessage: waMsg,
+    };
+  }, [selectedItem, quantity, lang]);
 
   return (
     <section id="calculator" className="py-20 bg-[#FAF8F5] text-slate-800 relative border-b border-slate-200">
