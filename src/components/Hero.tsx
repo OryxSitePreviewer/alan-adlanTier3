@@ -17,9 +17,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
       {/* Background Image with Light Soft Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=2000&q=80"
-          alt="Klinik Pergigian Alan Adlan Modern Clinic"
-          className="w-full h-full object-cover object-center scale-105 opacity-15"
+          src="hero.jpg"
+          alt="Klinik Pergigian Alan Adlan Reception"
+          className="w-full h-full object-cover object-center opacity-25"
         />
         <div className="absolute inset-0 hero-overlay"></div>
       </div>
@@ -95,18 +95,22 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
           <div className="lg:col-span-5">
             <div className="bg-white/95 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-xl space-y-6">
               
-              {/* Clinic Facade Location Highlight Badge */}
-              <div className="p-3 bg-gradient-to-r from-amber-500/10 via-amber-400/5 to-transparent border border-amber-300/60 rounded-xl flex items-center gap-3">
-                <div className="shrink-0">
-                  <ClinicLogo size="xs" showTopText={false} showSideText={false} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-slate-900 text-xs">
-                    Bandar Baru Bangi Main Storefront
-                  </h4>
-                  <p className="text-[11px] text-slate-600">
-                    Ground & 1st Floor, No 3 & 3A, Jalan 6/7B
-                  </p>
+              {/* Clinic Reception Photo Feature Banner */}
+              <div className="rounded-xl overflow-hidden border border-amber-300/80 shadow-md relative group">
+                <img
+                  src="hero.jpg"
+                  alt="Alan Adlan Dental Reception"
+                  className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3">
+                  <div className="flex items-center justify-between w-full">
+                    <span className="text-xs text-amber-300 font-bold bg-slate-900/90 backdrop-blur-md px-2.5 py-1 rounded-lg border border-amber-400/30">
+                      ✨ Our Reception Suite
+                    </span>
+                    <span className="text-[10px] text-slate-200 font-serif italic">
+                      Bandar Baru Bangi
+                    </span>
+                  </div>
                 </div>
               </div>
 
