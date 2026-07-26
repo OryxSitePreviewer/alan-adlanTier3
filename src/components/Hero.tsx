@@ -14,16 +14,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
 
   return (
     <section id="home" className="relative bg-transparent text-slate-800 min-h-[85vh] flex items-center overflow-hidden border-b border-slate-200">
-      {/* Background Image with Light Soft Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="hero.jpg"
-          alt="Klinik Pergigian Alan Adlan Reception"
-          className="w-full h-full object-cover object-center scale-105 opacity-40"
-        />
-        <div className="absolute inset-0 hero-overlay"></div>
-      </div>
-
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           

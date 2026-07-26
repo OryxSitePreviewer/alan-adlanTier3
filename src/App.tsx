@@ -40,15 +40,13 @@ export default function App() {
   return (
     <div className="min-h-screen text-slate-800 font-sans selection:bg-[#C5A059] selection:text-white flex flex-col">
 
-      {/* Fixed, semi-transparent brand emblem watermark behind all content.
-          Relative BASE_URL path so it resolves on both the Vercel root and
-          the GitHub Pages /alan-adlanTier3/ subpath. */}
+      {/* Fixed, semi-transparent reception counter watermark behind all content.
+          Relative BASE_URL path so it resolves on both Vercel root and GitHub Pages subpath. */}
       <div
         aria-hidden="true"
-        className="fixed inset-0 -z-10 pointer-events-none bg-center bg-no-repeat"
+        className="fixed inset-0 -z-10 pointer-events-none bg-center bg-no-repeat bg-cover"
         style={{
-          backgroundImage: `url(${import.meta.env.BASE_URL}alanadlanborderlogo.png)`,
-          backgroundSize: 'min(90vmin, 720px)',
+          backgroundImage: `url(${import.meta.env.BASE_URL}alanadlancounter.png)`,
           opacity: 0.20,
         }}
       />
